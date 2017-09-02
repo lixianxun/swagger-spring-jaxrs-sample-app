@@ -17,28 +17,27 @@ import jersey.repackaged.com.google.common.collect.Maps;
 
 public class TestRestResource {
 
-	static {
-		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
-	}
-
-	String url = "http://localhost:8080/app/rest/users";
-	RestTemplate tpl = new RestTemplate();
-
+	String url = "http://localhost:8089/app/rest/users";
 	Map<String, AtomicLong> status = Maps.newConcurrentMap();
 
 	@Test
 	public void testRestResourse() throws Exception {
+		//url="http://localhost:8080";
+		
 		int nThreads = 4;
 		int countPerThread = 100000;
 		AtomicLong total = new AtomicLong();
 
 		Stopwatch timer = Stopwatch.createStarted();
-		ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+		//ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+		ExecutorService executor = Executors.newWorkStealingPool();
 		
 		for(int i=0; i<nThreads; i++) {
 			executor.submit(() -> {
+				RestTemplate tpl = new RestTemplate();
 				for (int j = 0; j < countPerThread; j++) {
 					ResponseEntity<String> resp = tpl.exchange(url, HttpMethod.GET, null, String.class);
+					//System.out.println(resp);
 					count(resp.getStatusCode().toString());
 					total.incrementAndGet();
 				}

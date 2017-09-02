@@ -9,13 +9,14 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.javacodegeeks.examples.logbackexample.beans"
-		level="INFO" additivity="false">
+	<logger name="org.springframework.web.client" level="error" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="io.undertow.security.impl" level="error" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<!-- By default, the level of the root level is set to DEBUG -->
-	<root level="ERROR">
+	<root level="debug">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>

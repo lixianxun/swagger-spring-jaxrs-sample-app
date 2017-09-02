@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorOutputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.commons.compress.utils.IOUtils;
 
 public class GzipUtils {
 
