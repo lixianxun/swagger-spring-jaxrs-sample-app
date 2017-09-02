@@ -33,12 +33,9 @@ public class GzipUtilsTest {
 	@Test
 	public void testGzipCompressDecompress2() throws Exception{
 		String plainText = "plain text used to test gzip compress/decompress";
-		ByteArrayInputStream input = new ByteArrayInputStream(plainText.getBytes(StandardCharsets.UTF_8));
+		byte[] data = GzipUtils.compress(plainText);
 		
-		ByteArrayOutputStream gzippedStream = new ByteArrayOutputStream();
-		GzipUtils.compress(input, gzippedStream);
-		
-		Assert.assertThat(GzipUtils.deCompress(gzippedStream.toByteArray()), is(plainText));
+		Assert.assertThat(GzipUtils.deCompress(data), is(plainText));
 	}
 	
 	@Test

@@ -29,6 +29,24 @@ public class GzipUtils {
 		}
 	}
 	
+	public static byte[] compress(final String data) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		try {
+			CompressorOutputStream gzippedOut = new CompressorStreamFactory()
+					.createCompressorOutputStream(CompressorStreamFactory.GZIP, output);
+			
+			IOUtils.copy(new ByteArrayInputStream(data.getBytes()), gzippedOut);
+			gzippedOut.flush();
+			gzippedOut.close();
+			
+			return output.toByteArray();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}finally {
+			if(output!=null)IOUtils.closeQuietly(output);
+		}
+	}
+	
 	public static void deCompress(final InputStream gzippedInputStream, final OutputStream output) {
 		try {
 			CompressorInputStream gzippedIn = new CompressorStreamFactory()
