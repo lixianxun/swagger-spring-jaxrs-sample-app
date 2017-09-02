@@ -12,11 +12,11 @@
 	<logger name="org.springframework.web.client" level="error" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger name="io.undertow.security.impl" level="error" additivity="false">
+	<logger name="io.undertow" level="error" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="debug">
+	<root level="error">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>
