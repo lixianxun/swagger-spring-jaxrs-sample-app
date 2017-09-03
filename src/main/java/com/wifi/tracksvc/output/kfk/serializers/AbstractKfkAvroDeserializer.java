@@ -50,6 +50,8 @@ public class AbstractKfkAvroDeserializer extends AbstractSRAwareKfkAvroSerDe {
 		try {
 			ByteBuffer buffer = getByteBuffer(bytes);
 			Schema writerSchema = schemaRegistry.getById(buffer.getInt());
+			long eventSendTime = buffer.getLong();
+			
 			int length = buffer.limit() - 1 - ID_SIZE;
 
 			final Object result;

@@ -38,6 +38,8 @@ public class AbstractKfkAvroSerializer extends AbstractSRAwareKfkAvroSerDe {
 	      ByteArrayOutputStream out = new ByteArrayOutputStream();
 	      out.write(MAGIC_BYTE);
 	      out.write(ByteBuffer.allocate(ID_SIZE).putInt(schemaUniqId).array());
+	      out.write(ByteBuffer.allocate(TS_SIZE).putLong(System.currentTimeMillis()).array());
+	      
 	      if (record instanceof byte[]) {
 	        out.write((byte[]) record);
 	      } else {

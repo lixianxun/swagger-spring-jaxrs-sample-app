@@ -22,6 +22,7 @@ public abstract class AbstractSRAwareKfkAvroSerDe {
 
 	protected static final byte MAGIC_BYTE = 0x0;
 	protected static final int ID_SIZE = 4;
+	protected static final int TS_SIZE = 8;
 
 	private static final Map<String, Schema> primitiveSchemas;
 
