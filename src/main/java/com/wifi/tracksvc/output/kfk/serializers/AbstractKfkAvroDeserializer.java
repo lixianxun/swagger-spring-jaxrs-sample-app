@@ -12,7 +12,6 @@ import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificRecord;
-import org.codehaus.jackson.node.JsonNodeFactory;
 import org.springframework.util.Assert;
 
 import com.wifi.tracksvc.output.kfk.serializers.exception.SerializationException;
@@ -50,8 +49,7 @@ public class AbstractKfkAvroDeserializer extends AbstractSRAwareKfkAvroSerDe {
 		int schemaUniqId = -1;
 		try {
 			ByteBuffer buffer = getByteBuffer(bytes);
-			schemaUniqId = buffer.getInt();
-			Schema writerSchema = schemaRegistry.getById(schemaUniqId);
+			Schema writerSchema = schemaRegistry.getById(buffer.getInt());
 			int length = buffer.limit() - 1 - ID_SIZE;
 
 			final Object result;

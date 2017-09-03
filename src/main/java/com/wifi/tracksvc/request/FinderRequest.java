@@ -7,6 +7,7 @@ public class FinderRequest {
 
 	private byte[] keyBytes;
 	private byte[] payload;
+	private String payloadType;
 	
 	private String subject;
 	private int versionId;
